@@ -1,9 +1,13 @@
+const asyncHandler = require("express-async-handler");
+const Password = require("../models/passwordModel");
+
 //@desc Get all passwords
 //@route GET /api/passwords
 //@access public
-const getPasswords = (req, res) => {
-    res.status(200).json({message:"Get all passwords"});
-};
+const getPasswords = asyncHandler(async (req, res) => {
+    const passwordData = await Password.find();
+    res.status(200).json(passwordData);
+});
 
 
 //@desc create password
